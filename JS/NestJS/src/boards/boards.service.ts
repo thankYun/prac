@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Board, BoardStatus } from './boards.model';
 import { v1 as uuid } from 'uuid'
 import { CreateBoardDTO } from './dto/create-board.dto';
+import { randomUUID } from 'crypto';
 @Injectable()
 export class BoardsService {
     private boards: Board[]=[];
@@ -32,7 +33,8 @@ export class BoardsService {
     }
 
     deleteBoard(id:string):void {
-        this.boards=this.boards.filter((board)=>board.id !== id);
+        const found =this.getBoardById(id);
+        this.boards=this.boards.filter((board)=>board.id !== found.id);
     }
 
     updateBoardStatus(id:string, status:BoardStatus): Board{

@@ -14,7 +14,7 @@ export class BoardsService {
     createBoard(createBoardDTO :CreateBoardDTO){
         const {title, description} = createBoardDTO
         const board : Board= {
-            id: uuid,
+            id: uuid(),
             title,
             description,
             status:BoardStatus.PUBLIC
@@ -24,7 +24,8 @@ export class BoardsService {
     }
 
     getBoardById(id:string):Board {
-        const found = this.boards.find((board)=>board.id === id);
+        const found = this.boards.find((board) => board.id === id);
+
         if(!found){
             throw new NotFoundException(`Can't find board with id ${id}` );
         }

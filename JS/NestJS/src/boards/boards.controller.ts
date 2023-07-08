@@ -14,13 +14,13 @@ export class BoardsController {
         return this.boardsService.getAllBoards();
     }
 
-    @Post( )
+    @Post()
     @UsePipes(ValidationPipe)
     createBoard(
         @Body() createBoardDTO:CreateBoardDTO
     ): Board {
         return this.boardsService.createBoard(createBoardDTO);
-    }   
+    }
 
     @Get('/:id')
     getBoardbyID(@Param('id') id:string) : Board{
@@ -32,7 +32,7 @@ export class BoardsController {
         this.boardsService.deleteBoard(id);
     }
 
-    @Patch(':/id/status')
+    @Patch('/:id/status')
     updateBoardsStatus(
         @Param('id') id:string,
         @Body('status',BoardStatusValidationPipe) status:BoardStatus

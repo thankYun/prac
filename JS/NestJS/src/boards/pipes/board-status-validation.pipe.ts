@@ -8,6 +8,7 @@ export class BoardStatusValidationPipe implements PipeTransform{
     ]
 
     transform(value:any){
+        value = value.toUpperCase();
         // console.log('value',value);
         // console.log('metadata',metadata);
         if(!this.isStatusValid(value)){
